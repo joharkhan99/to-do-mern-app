@@ -10,8 +10,8 @@ pipeline {
             steps {
                 script {
                     dir('client') {
-                        sh 'docker build -t ${DOCKER_IMAGE}-frontend ./client'
-                        sh 'docker push ${DOCKER_IMAGE}-frontend'
+                        sh 'docker build -t ${DOCKER_IMAGE}frontend ./client'
+                        sh 'docker push ${DOCKER_IMAGE}frontend'
                     }
                 }
             }
@@ -21,8 +21,8 @@ pipeline {
             steps {
                 script {
                     dir('server') {
-                        sh 'docker build -t ${DOCKER_IMAGE}-backend .server'
-                        sh 'docker push ${DOCKER_IMAGE}-backend'
+                        sh 'docker build -t ${DOCKER_IMAGE}backend .server'
+                        sh 'docker push ${DOCKER_IMAGE}backend'
                     }
                 }
             }
