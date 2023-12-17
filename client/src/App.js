@@ -15,7 +15,7 @@ function App() {
   const addTodo = () => {
     if (task.trim() !== "") {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/api/todos`, { task })
+        .post(`http://localhost:5000/api/todos`, { task })
         .then((response) => {
           setTodos([...todos, response.data]);
           setTask("");
@@ -24,11 +24,9 @@ function App() {
   };
 
   const deleteTodo = (id) => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}/api/todos/${id}`)
-      .then(() => {
-        setTodos(todos.filter((todo) => todo._id !== id));
-      });
+    axios.delete(`http://localhost:5000/api/todos/${id}`).then(() => {
+      setTodos(todos.filter((todo) => todo._id !== id));
+    });
   };
 
   return (

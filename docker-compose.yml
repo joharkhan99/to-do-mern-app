@@ -1,0 +1,25 @@
+services:
+  todofrontend:
+    build:
+      context: ./client
+      dockefile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  todobackend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    volumes:
+      - mongo_db:/data/db
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+volumes:
+   mongo_db:
