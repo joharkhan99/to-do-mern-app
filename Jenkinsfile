@@ -6,10 +6,19 @@ pipeline {
     }
 
     stages {
+        stage('Print Current Directory') {
+            steps {
+                script {
+                    sh 'pwd'
+                }
+            }
+        }
+
         stage('Build and Push Frontend Docker Image') {
             steps {
                 script {
                     dir('client') {
+                        sh 'pwd' // Print current directory for debugging
                         sh 'docker build -t ${DOCKER_IMAGE}frontend ./client'
                         sh 'docker push ${DOCKER_IMAGE}frontend'
                     }
@@ -21,7 +30,8 @@ pipeline {
             steps {
                 script {
                     dir('server') {
-                        sh 'docker build -t ${DOCKER_IMAGE}backend .server'
+                        sh 'pwd' // Print current directory for debugging
+                        sh 'docker build -t ${DOCKER_IMAGE}backend ./server'
                         sh 'docker push ${DOCKER_IMAGE}backend'
                     }
                 }
