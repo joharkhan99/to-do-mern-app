@@ -46,6 +46,22 @@ app.post("/api/todos", async (req, res) => {
   }
 });
 
+app.delete("/api/todos/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedTodo = await Todo.findByIdAndDelete(id);
+
+    if (!deletedTodo) {
+      return res.status(404).json({ error: "Todo not found" });
+    }
+
+    res.json(deletedTodo);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
