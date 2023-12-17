@@ -7,7 +7,7 @@ function App() {
   const [task, setTask] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/todos").then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/todos`).then((response) => {
       setTodos(response.data);
     });
   }, []);
@@ -15,7 +15,7 @@ function App() {
   const addTodo = () => {
     if (task.trim() !== "") {
       axios
-        .post("http://localhost:5000/api/todos", { task })
+        .post(`${process.env.REACT_APP_API_URL}/api/todos`, { task })
         .then((response) => {
           setTodos([...todos, response.data]);
           setTask("");
