@@ -19,7 +19,7 @@ pipeline {
                 script {
                     dir('client') {
                         sh 'pwd' // Print current directory for debugging
-                        sh 'docker build -t ${DOCKER_IMAGE}frontend .'
+                        sh 'sudo docker build -t ${DOCKER_IMAGE}frontend .'
                     }
                 }
             }
@@ -30,7 +30,7 @@ pipeline {
                 script {
                     dir('server') {
                         sh 'pwd' // Print current directory for debugging
-                        sh 'docker build -t ${DOCKER_IMAGE}backend .'
+                        sh 'sudo docker build -t ${DOCKER_IMAGE}backend .'
                     }
                 }
             }
