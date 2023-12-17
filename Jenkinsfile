@@ -20,7 +20,6 @@ pipeline {
                     dir('client') {
                         sh 'pwd' // Print current directory for debugging
                         sh 'docker build -t ${DOCKER_IMAGE}frontend .'
-                        sh 'docker push ${DOCKER_IMAGE}frontend'
                     }
                 }
             }
@@ -32,7 +31,6 @@ pipeline {
                     dir('server') {
                         sh 'pwd' // Print current directory for debugging
                         sh 'docker build -t ${DOCKER_IMAGE}backend .'
-                        sh 'docker push ${DOCKER_IMAGE}backend'
                     }
                 }
             }
